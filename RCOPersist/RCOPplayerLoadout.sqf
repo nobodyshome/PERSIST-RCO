@@ -25,8 +25,12 @@ if (_playerLoadoutChoice == 1) then {
 
 	_radioFixer = ((_loadout select 9) select 2);
 	if (_radioFixer != "") then {
+		sleep (1 + random 5);
 		_radioClass = [ configFile >> "CfgWeapons" >> _radioFixer, true ] call BIS_fnc_returnParents;
 		_radioFixed = _radioClass select 1;
+		if ((_radioFixed find ["_1", 5]) != -1) then {
+			_radioFixed = _radioClass select 2;
+		};
 		player linkItem _radioFixed;
 	};
 };
@@ -60,7 +64,7 @@ if (_playerLoadoutChoice == 2) then {
 
 	sleep 3;
 
-	_radioFixer = ((_loadout select 9) select 2); // CHANGES
+	_radioFixer = ((_loadout select 9) select 2);
 	if (_radioFixer != "") then {
 		sleep (1 + random 5);
 		_radioClass = [ configFile >> "CfgWeapons" >> _radioFixer, true ] call BIS_fnc_returnParents;
